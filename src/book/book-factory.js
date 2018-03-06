@@ -1,4 +1,4 @@
-const Book = require('./book');
+const Book      = require('./book');
 const Publisher = require('../publisher/publisher');
 
 class BookFactory{
@@ -20,7 +20,11 @@ class BookFactory{
         return book;
     }
     makeFromRequest(bookRaw) {
-
+        let publisher = new Publisher(bookRaw.name);
+        publisher.setId(bookRaw.id);
+        publisher.setAddress(bookRaw.address);
+        publisher.setPhone(bookRaw.phone);
+        return publisher;
     }
 }
 

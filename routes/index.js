@@ -17,7 +17,7 @@ router.get('/book/:id', check.searchCondition, bookController.search);
 
 router.post('/book', check.bookRequest, bookController.createBook);
 
-router.put('/book', check.bookRequest, bookController.editBook);
+router.put('/book/:id', check.bookRequest, bookController.editBook);
 
 router.delete('/book/:id', bookController.deleteBook);
 

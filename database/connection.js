@@ -3,8 +3,8 @@ const connection = require('knex')({
     connection: {
         host : 'localhost',
         user : 'root',
-        password : '1',
-        database : 'bookdemo'
+        password : '123456',
+        database : 'Books'
     },
     useNullAsDefault: true
 });

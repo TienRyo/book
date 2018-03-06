@@ -1,4 +1,4 @@
-const Connection = require('../../database/connection');
+const Connection  = require('../../database/connection');
 const BookFactory = require('../book/book-factory');
 
 class Searcher {
@@ -19,15 +19,17 @@ class Searcher {
      * @return Book[]
      */
     search(condition) {
-        let factory  = this.factory;
-        let sqlQuery = this.connection
-            .select('books.id', 'books.title', 'books.author', 'books.publisher_id', 'books.price', 'publishers.name', 'publishers.address', 'publishers.phone')
+        let sqlQuery;
+        let factory = this.factory;
+        sqlQuery = this.connection
+            .select('books.id', 'books.title', 'books.author', 'books.publisher_id', 'books.price', 'publishers.name',
+                'publishers.address', 'publishers.phone')
             .from('books')
             .innerJoin('publishers', function () {
-                this.on('publisher_id', '=', 'publishers.id')
+                this.on('books.publisher_id', '=', 'publishers.id')
             });
         condition.describe(sqlQuery);
-        console.log(sqlQuery.toSQL());
+        //console.log(sqlQuery.toSQL());
         return sqlQuery.then(results => results.map(element => factory.makeFromDB(element)));
     }
 }

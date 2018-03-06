@@ -5,7 +5,6 @@ class BookController {
     }
 
     createBook(request, response, next) {
-        console.log(request.book);
         let repo = request.app.get('books.repo');
         repo.add(request.book).then(function () {
             response.status(201).send({message: "Success!"});

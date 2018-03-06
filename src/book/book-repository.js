@@ -1,4 +1,4 @@
-const Book = require('./book');
+const Book       = require('./book');
 const Connection = require('../../database/connection');
 
 class BookRepository{
@@ -35,7 +35,7 @@ class BookRepository{
         return this.connection('books').update({
             title: book.getTitle(),
             author: book.getAuthor(),
-            publisher: book.getPublisher(),
+            publisher_id: book.getPublisher().getId(),
             price: book.getPrice()
         }).where({
             id: book.getId()
