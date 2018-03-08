@@ -38,17 +38,14 @@ class Publisher {
     /**
      *
      * @param {string} address
-     * @return self
      */
     setAddress(address) {
         this.address = address;
-        return this;
     }
 
     /**
      *
      * @param {string} phone
-     * @return self
      */
     setPhone(phone) {
         this.phone = phone;
@@ -57,11 +54,9 @@ class Publisher {
     /**
      *
      * @param {INT} id
-     * @return self
      */
     setId(id) {
         this.id = id;
-        return this;
     }
 }
 

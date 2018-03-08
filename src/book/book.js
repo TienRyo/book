@@ -1,6 +1,6 @@
 const Publisher = require('../publisher/publisher');
 
-class Book{
+class Book {
 
     /**
      * 
@@ -8,18 +8,16 @@ class Book{
      * @param {string} author
      */
     constructor(title, author) {
-        this.title = title;
+        this.title  = title;
         this.author = author;
     }
-
     /**
-     * 
+     *
      * @return {string}
      */
     getTitle() {
         return this.title;
     }
-
     /**
      * 
      * @return {string}
@@ -27,7 +25,6 @@ class Book{
     getAuthor() {
         return this.author;
     }
-
     /**
      * 
      * @return {Publisher}
@@ -38,11 +35,9 @@ class Book{
     /**
      *
      * @param {Publisher} publisher
-     * @return self
      */
     setPublisher(publisher) {
         this.publisher = publisher;
-        // return this;
     }
 
     /**
@@ -52,60 +47,46 @@ class Book{
     getPrice() {
         return this.price;
     }
-
     /**
      * 
-     * @return {INT}
+     * @return {int}
      */
     getId() {
         return this.id;
     }
-
     /**
      * 
      * @param {string} title
-     * @return self
      */
     setTitle(title) {
         this.title = title;
-        return this;
     }
-
     /**
      * 
      * @param {string} author
-     * @return self
      */
     setAuthor(author) {
         this.author = author;
-        return this;
     }
-
-
-
     /**
      * 
      * @param {number} price
-     * @return self
      */
     setPrice(price) {
         this.price = price;
-        return this;
     }
 
     /**
      * 
-     * @param {INT} id
-     * @return self
+     * @param {int} id
      */
     setId(id) {
         this.id = id;
-        return this;
     }
 
     /**
      *
-     * @return {{id: INT, title: string, author: string, publisher: string, price: number}}
+     * @return {{id: int, title: string, author: string, publisher: Publisher, price: number}}
      */
     toJson() {
         return {
@@ -116,7 +97,6 @@ class Book{
             price    :this.getPrice()
         }
     }
-    
 }
 
 module.exports = Book;

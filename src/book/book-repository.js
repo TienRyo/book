@@ -47,7 +47,7 @@ class BookRepository{
 
     /**
      *
-     * @param {INT} id
+     * @param {int} id
      * @return {Promise <void>}
      */
     remove(id) {
