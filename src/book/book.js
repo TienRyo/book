@@ -35,6 +35,15 @@ class Book{
     getPublisher() {
         return this.publisher;
     }
+    /**
+     *
+     * @param {Publisher} publisher
+     * @return self
+     */
+    setPublisher(publisher) {
+        this.publisher = publisher;
+        // return this;
+    }
 
     /**
      * 
@@ -72,15 +81,7 @@ class Book{
         return this;
     }
 
-    /**
-     * 
-     * @param {Publisher} publisher
-     * @return self
-     */
-    setPublisher(publisher) {
-        this.publisher = publisher;
-        // return this;
-    }
+
 
     /**
      * 

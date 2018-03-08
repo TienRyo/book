@@ -18,19 +18,20 @@ class Searcher {
      * @param condition
      * @return Book[]
      */
-    search(condition) {
+     search(condition) {
         let sqlQuery;
         let factory = this.factory;
         sqlQuery = this.connection
             .select('books.id', 'books.title', 'books.author', 'books.publisher_id', 'books.price', 'publishers.name',
                 'publishers.address', 'publishers.phone')
             .from('books')
-            .innerJoin('publishers', function () {
+            .leftJoin('publishers', function () {
                 this.on('books.publisher_id', '=', 'publishers.id')
             });
         condition.describe(sqlQuery);
-        //console.log(sqlQuery.toSQL());
-        return sqlQuery.then(results => results.map(element => factory.makeFromDB(element)));
+        return sqlQuery.then(results => {
+            return results.map(element => factory.makeFromDB(element));
+        });
     }
 }
 

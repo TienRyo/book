@@ -1,5 +1,9 @@
 const Book      = require('./book');
 const Publisher = require('../publisher/publisher');
+const PublisherProvider = require('../publisher/publisher-provider');
+const connection    = require('../../database/connection');
+
+let publisherProvider = new PublisherProvider(connection);
 
 class BookFactory{
 
@@ -9,23 +13,25 @@ class BookFactory{
      * @return {Book}
      */
     makeFromDB(bookRaw) {
-        let book = new Book(bookRaw.title, bookRaw.author);
+        //let book = this.makeFromRequest(bookRaw);
+        let book  = new Book(bookRaw.title, bookRaw.author);
         book.setId(bookRaw.id);
         book.setPrice(bookRaw.price);
-        let publisher = new Publisher(bookRaw.name);
-        publisher.setId(bookRaw.publisher_id);
-        publisher.setAddress(bookRaw.address);
-        publisher.setPhone(bookRaw.phone);
+        let publisher = publisherProvider.make(bookRaw);
         book.setPublisher(publisher);
         return book;
     }
+
     makeFromRequest(bookRaw) {
-        let publisher = new Publisher(bookRaw.name);
-        publisher.setId(bookRaw.id);
-        publisher.setAddress(bookRaw.address);
-        publisher.setPhone(bookRaw.phone);
-        return publisher;
-    }
+        let book = new Book(bookRaw.title, bookRaw.author);
+        book.setId(bookRaw.id);
+        book.setPrice(bookRaw.price);
+            return publisherProvider.search(bookRaw.publisher_id).then(result => {
+            book.setPublisher(result);
+            return book;
+           })
+       }
 }
 
 module.exports = BookFactory;
+

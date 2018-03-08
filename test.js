@@ -1,3 +1,4 @@
+/*
 const Book = require('./src/book/book');
 const BookRepository = require('./src/book/book-repository');
 const Connection = require('./database/connection');
@@ -52,4 +53,4 @@ console.log(bookfactory.make(bookrawdata,publisher));
 //     console.log(books);
 // }, function(error){
 //     console.log(error);
-// });
+// });*/

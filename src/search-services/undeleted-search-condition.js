@@ -5,7 +5,7 @@ class UndeletedSearchCondition {
      * @param sqlQuery
      * @return {Book[]}
      */
-    describe(sqlQuery) {
+        describe(sqlQuery) {
         return sqlQuery.where({'books.deleted_at': null})
     }
 }

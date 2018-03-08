@@ -17,12 +17,14 @@ class BookRepository{
      * @return {Promise <void>}
      */
     add(book) {
-        console.log(book, book.getPublisher());
         return this.connection('books').insert({
             title: book.getTitle(),
             author: book.getAuthor(),
-            publisher_id: book.getPublisher().getId(),
+            publisher_id: book.getPublisher().getId() ? book.getPublisher().getId(): null ,
             price: book.getPrice()
+        }).then(function (insertedId) {
+            book.setId(insertedId[0]);
+            return book;
         });
     }
 
@@ -35,7 +37,7 @@ class BookRepository{
         return this.connection('books').update({
             title: book.getTitle(),
             author: book.getAuthor(),
-            publisher_id: book.getPublisher().getId(),
+            publisher_id: book.getPublisher().getId() ? book.getPublisher().getId(): null ,
             price: book.getPrice()
         }).where({
             id: book.getId()
