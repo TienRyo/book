@@ -10,6 +10,10 @@ router.get('/', function(req, res) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/book/add', function (req,res) {
+   res.render('add-book', {title : 'Express'});
+});
+
 
 router.get('/books', check.searchCondition, bookController.search);
 
@@ -24,6 +28,5 @@ router.delete('/book/:id', bookController.deleteBook);
 router.get('/search-advance', check.searchCondition, bookController.search);
 
 router.get('/search-basic', check.searchCondition, bookController.search);
-
 
 module.exports = router;

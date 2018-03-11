@@ -18,15 +18,16 @@ class PublisherProvide {
      */
     search(publisherId) {
 
-        return this.connection.select().from('publishers').where({id: publisherId, deleted_at: null})
-            .then((results)=>{
+        return this.connection.select()
+            .from('publishers')
+            .where({id: publisherId, deleted_at: null})
+            .then((results)=> {
                 if(results.length === 0) {
                     return new Publisher("");
                 }
                 return this.make(results[0]);
             });
     }
-
     /**
      *
      * @param publisherRaw
@@ -37,7 +38,6 @@ class PublisherProvide {
         publisher.setId(publisherRaw.publisher_id);
         publisher.setAddress(publisherRaw.address);
         publisher.setPhone(publisherRaw.phone);
-
         return publisher;
     }
 }

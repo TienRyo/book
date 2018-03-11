@@ -30,7 +30,7 @@ class BookController {
 
     search(request, response, next) {
         request.app.get('book.searcher').search(request.condition)
-            .then((results) => response.status(200).send(results.map(result => result.toJson())))
+            .then((results) => response.status(200).render('index', {books:results.map(result =>result.toJson())}))
             .catch(next)
     }
 }

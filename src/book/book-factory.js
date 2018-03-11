@@ -13,7 +13,6 @@ class BookFactory{
      * @return {Book}
      */
     makeFromDB(bookRaw) {
-        //let book = this.makeFromRequest(bookRaw);
         let book  = new Book(bookRaw.title, bookRaw.author);
         book.setId(bookRaw.id);
         book.setPrice(bookRaw.price);
@@ -22,11 +21,16 @@ class BookFactory{
         return book;
     }
 
+    /**
+     *
+     * @param {Object}bookRaw
+     * @return {Book}
+     */
     makeFromRequest(bookRaw) {
         let book = new Book(bookRaw.title, bookRaw.author);
-        book.setId(bookRaw.id);
         book.setPrice(bookRaw.price);
-            return publisherProvider.search(bookRaw.publisher_id).then(result => {
+            return publisherProvider.search(bookRaw.publisher_id)
+                .then(result => {
             book.setPublisher(result);
             return book;
            })

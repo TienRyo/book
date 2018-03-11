@@ -20,7 +20,7 @@ class BookRepository{
         return this.connection('books').insert({
             title: book.getTitle(),
             author: book.getAuthor(),
-            publisher_id: book.getPublisher().getId() ? book.getPublisher().getId(): null ,
+            publisher_id: book.getPublisher().getId() ,
             price: book.getPrice()
         }).then(function (insertedId) {
             book.setId(insertedId[0]);
