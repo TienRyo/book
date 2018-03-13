@@ -1,23 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const BookController = require('../http/controller/book-controller');
+const BookController = require('../http/controller/book-controller-lock');
 const check = require('../http/middlerware');
-const IdSearchCondition = require('../src/search-services/id-search-condition');
 let bookController = new BookController();
 
-/* GET home page. */
-router.get('/book/save',function (req, res) {
-    res.render('save.njk', {books:''})
-});
 
-router.get('/book/save/:id', check.searchCondition, bookController.save);
+/* GET home page. */
 
 router.get('/books', check.searchCondition, bookController.search);
 
-router.get('/book/:id', function (request, response, next) {
-    request.condition = new IdSearchCondition(request.params.id);
-    next();
-}, bookController.detail);
+router.get('/book/:id', check.searchCondition, bookController.search);
 
 router.post('/book', check.bookRequest, check.checkNull, check.checkLength, bookController.createBook);
 

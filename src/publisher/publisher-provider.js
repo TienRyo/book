@@ -20,7 +20,7 @@ class PublisherProvide {
 
         return this.connection.select()
             .from('publishers')
-            .where({id: publisherId, deleted_at: null})
+            .where({id : publisherId, deleted_at: null})
             .then((results)=> {
                 if(results.length === 0) {
                     return new Publisher("");
@@ -35,7 +35,7 @@ class PublisherProvide {
      */
     make(publisherRaw) {
         let publisher = new Publisher(publisherRaw.name);
-        publisher.setId(publisherRaw.publisher_id);
+        publisher.setId(publisherRaw.id);
         publisher.setAddress(publisherRaw.address);
         publisher.setPhone(publisherRaw.phone);
         return publisher;

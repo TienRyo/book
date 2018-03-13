@@ -1,0 +1,72 @@
+body {
+    width: 1200px;
+    height: 1000px;
+    margin: auto;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+a {
+    color: #00B7FF;
+}
+
+.left {
+    float: left;
+    height: 1000px;
+    border: 1px solid #0ea432;
+    margin: auto;
+    width: 200px;
+    background: black;
+}
+.right {
+    padding-top: 140px;
+    width: 155px;
+    height: 1000px;
+    float: right;
+}
+.main {
+    height: 1000px;
+    width: 750px;
+    margin: auto;
+}
+th {
+    font: 20px "Lucida Grande", time new roman;
+    border: 1px solid #000000;
+    height: 30px;
+}
+.main-bt-search {
+    background: #2196F3;
+    color: white;
+    border: 1px solid grey;
+    cursor: pointer;
+}
+li {
+    font: 20px "Lucida Grande", time new roman;
+    height: 50px;
+    display: list-item;
+    list-style-type: none;
+    border-bottom: 1px solid #000000;
+    padding-top: 10px;
+}
+.list-book {
+    padding-top: 20px;
+}
+td {
+    text-align: center;
+    font: 20px "Lucida Grande", time new roman;
+    border: 1px solid #000000;
+    height: 30px;
+}
+p{
+    height: 50px;
+    border-bottom: 1px solid #FFFFFF;
+    padding-top: 10px;
+    font: 20px "Lucida Grande", time new roman;
+}
+.left_add {
+    font-size: 50px;
+    float: left;
+    height: 1000px;
+    border: 1px solid #0ea432;
+    margin: auto;
+    width: 200px;
+    background: black;
+}

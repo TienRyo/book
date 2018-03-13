@@ -7,15 +7,11 @@ const BookRepository = require('./src/book/book-repository');
 const connection     = require('./database/connection');
 const BookFactory    = require('./src/book/book-factory');
 const Searcher       = require('./src/search-services/searcher');
-
-const index = require('./routes/index');
+const nunjucks       = require('nunjucks');
+const index          = require('./routes/index');
 
 const app   = express();
 
-
-app.set('views', path.join(__dirname, 'views'));
-
-app.set('view engine', 'ejs');
 
 app.use(express.static(path.join('public')));
 
@@ -33,6 +29,11 @@ app.set('books.repo', new BookRepository(connection));
 
 app.set('book.searcher', new Searcher(connection, new BookFactory()));
 
+
+nunjucks.configure('views', {
+    autoescape: true,
+    express: app
+});
 
 app.use('/', index);
 

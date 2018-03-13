@@ -7,7 +7,7 @@ class BookController {
     createBook(request, response, next) {
         let repo = request.app.get('books.repo');
         repo.add(request.book).then(function (result) {
-            response.render('home.njk', {books :result})
+            response.json(result.toJson())
         }).catch(function (err) {
             next(err);
         });
@@ -16,7 +16,7 @@ class BookController {
     deleteBook(request, response) {
         let repo = request.app.get('books.repo');
         repo.remove(request.params.id).then(function () {
-            response.status(200).render('index');
+            response.status(200).json({message:'Success'});
         });
     }
 
@@ -27,19 +27,9 @@ class BookController {
         });
     }
 
-    save(request, response, next) {
-        request.app.get('book.searcher').search(request.condition)
-            .then(book => response.render('save.njk', {book:book[0]}))
-            .catch(next)
-    }
     search(request, response, next) {
         request.app.get('book.searcher').search(request.condition)
-            .then(books => response.render('home.njk', {books:books}))
-            .catch(next)
-    }
-    detail(request, response, next) {
-        request.app.get('book.searcher').search(request.condition)
-            .then(book => response.render('detail.njk', {book:book[0]}))
+            .then(books => response.json(books.map(result => result.toJson())))
             .catch(next)
     }
 }
